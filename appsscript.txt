@@ -1,0 +1,43 @@
+function doPost(e) {
+
+  const lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+
+  try {
+
+    const sheet = SpreadsheetApp
+      .getActiveSpreadsheet()
+      .getSheetByName("CHAMADOS");
+
+    const data = JSON.parse(e.postData.contents);
+
+    const ultimoID = sheet.getLastRow();
+
+    const protocolo = "CHAMADO-" +
+      String(ultimoID).padStart(4, "0");
+
+    sheet.appendRow([
+      protocolo,
+      data.email,
+      data.nome,
+      data.tipo,
+      data.prioridade,
+      data.operadora,
+      data.emailOperadora,
+      data.assunto,
+      data.descricao,
+      data.copia,
+      new Date()
+    ]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        status: "ok",
+        protocolo: protocolo
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } finally {
+    lock.releaseLock();
+  }
+}
