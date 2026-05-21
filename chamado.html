@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Chamados</title>
+  <title>Abertura de Chamados</title>
 </head>
 <body>
 
@@ -10,11 +10,36 @@
 
   <input id="nome" placeholder="Nome"><br><br>
   <input id="email" placeholder="Email"><br><br>
-  <input id="tipo" placeholder="Tipo"><br><br>
-  <input id="prioridade" placeholder="prioridade"><br><br>
-  <input id="operadora" placeholder="Operadora"><br><br>
+  <select id="tipo">
+    <option value="">Tipo</option>
+    <option value="Queda de Conexão">Queda de Conexão</option>
+    <option value="Suspensão de Linha">Suspensão de Linha</option>
+    <option value="Habilitação de SMS">Habilitação de SMS</option>
+    <option value="Troca de ICCID">Troca de ICCID</option>
+    <option value="Cancelamento de Linha">Cancelamento de Linha</option>
+    <option value="Instabilidade na Plataforma">Instabilidade na Plataforma</option>
+    <option value="Reset">Reset</option>
+    <option value="Informações Gerais">Informações Gerais</option>
+    <option value="Outro">Outro</option>
+  </select><br><br>
+  <select id="prioridade">
+    <option value="">Prioridade</option>
+    <option value="Alta">Alta</option>
+    <option value="Media">Média</option>
+    <option value="Baixa">Baixa</option>
+  </select><br><br>
+  <select id="operadora">
+    <option value="">Operadora</option>
+    <option value="Vivo">Vivo</option>
+    <option value="Claro">Claro</option>
+    <option value="Arqia">Arqia</option>
+    <option value="Emnify">Emnify</option>
+    <option value="Tim">Tim</option>
+    <option value="NLT">NLT</option>
+    <option value="Eseye">Eseye</option>
+  </select><br><br>
   <input id="assunto" placeholder="Assunto"><br><br>
-  <input id="descricao" placeholder="Descrição"><br><br>
+  <textarea id="descricao"></textarea><br><br>
   <input id="copia" placeholder="Email em Cópia"><br><br>
 
   <button onclick="enviar()">Enviar</button>
