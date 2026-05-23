@@ -1,7 +1,5 @@
 async function enviar() {
       const data = {
-        nome: document.getElementById("nome").value,
-        email: document.getElementById("email").value,
         tipo: document.getElementById("tipo").value,
         prioridade: document.getElementById("prioridade").value,
         operadora: document.getElementById("operadora").value,
