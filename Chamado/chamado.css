@@ -517,7 +517,7 @@ body {
   .form-group:nth-child(1),  /* Tipo */
   .form-group:nth-child(4),  /* Assunto */
   .form-group:nth-child(5),  /* Email cópia */
-  .form-group:nth-child(6),  /* Descrição */
+  .form-group:nth-child(6),  /* Mensagem */
   .checkbox-group,
   .btn-enviar {
     grid-column: 1 / -1;
