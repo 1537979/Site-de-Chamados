@@ -287,6 +287,34 @@ body {
 }
 
 /* ===========================
+   VALIDAÇÃO — ERROS INLINE
+=========================== */
+
+/* Mensagem de erro abaixo do campo */
+.field-error {
+  display:     none;
+  font-size:   0.775rem;
+  font-weight: 500;
+  color:       var(--danger);
+  margin-top:  -2px;
+}
+
+/* Borda vermelha no campo inválido */
+.form-group input.input-error,
+.form-group select.input-error,
+.form-group textarea.input-error {
+  border-color: var(--danger);
+  box-shadow:   0 0 0 3.5px rgba(239, 68, 68, 0.12);
+}
+
+.form-group input.input-error:focus,
+.form-group select.input-error:focus,
+.form-group textarea.input-error:focus {
+  border-color: var(--danger);
+  box-shadow:   0 0 0 3.5px rgba(239, 68, 68, 0.18);
+}
+
+/* ===========================
    CARD
 =========================== */
 .card {
@@ -381,69 +409,52 @@ body {
   line-height: 1.6;
 }
 
-/* ===========================
-   CHECKBOX GROUP
-=========================== */
-.checkbox-group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0.75rem 1rem;
-  background: var(--brand-light);
-  border: 1.5px solid var(--brand-mid);
+/* ANEXAR ARQUIVO */
+.form-group input[type="file"] {
+  padding: 0;
+  background: none;
+  border: 1.5px dashed var(--border);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  user-select: none;
-  transition: background var(--transition), border-color var(--transition);
-}
-
-.checkbox-group:hover {
-  background: #DBEAFE;
-  border-color: #93C5FD;
-}
-
-.checkbox-group input[type="checkbox"] {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 18px;
-  height: 18px;
-  min-width: 18px;
-  border: 1.5px solid #93C5FD;
-  border-radius: 5px;
-  background: var(--surface-1);
-  cursor: pointer;
-  display: grid;
-  place-content: center;
-  transition: background var(--transition), border-color var(--transition);
-  flex-shrink: 0;
-}
-
-.checkbox-group input[type="checkbox"]::after {
-  content: '';
-  width: 9px;
-  height: 5px;
-  border-left: 2px solid white;
-  border-bottom: 2px solid white;
-  transform: rotate(-45deg) scale(0);
-  transition: transform 150ms ease;
-  margin-top: -2px;
-}
-
-.checkbox-group input[type="checkbox"]:checked {
-  background: var(--brand);
-  border-color: var(--brand);
-}
-
-.checkbox-group input[type="checkbox"]:checked::after {
-  transform: rotate(-45deg) scale(1);
-}
-
-.checkbox-group label {
+  position: relative;
+  display: flex;
+  align-items: center;
   font-size: 0.9rem;
-  font-weight: 500;
-  color: #1E40AF;
+  color: var(--text-hint);
+  min-height: 2.75rem;
+}
+ 
+.form-group input[type="file"]::file-selector-button {
+  font-family: var(--font);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--brand);
+  background: var(--brand-light);
+  border: none;
+  border-right: 1.5px solid var(--brand-mid);
+  border-radius: calc(var(--radius-sm) - 2px) 0 0 calc(var(--radius-sm) - 2px);
+  padding: 0.65rem 1rem;
   cursor: pointer;
-  line-height: 1.4;
+  margin-right: 0.875rem;
+  transition: background var(--transition), color var(--transition);
+  height: 100%;
+}
+ 
+.form-group input[type="file"]::file-selector-button:hover {
+  background: var(--brand-mid);
+  color: #1D4ED8;
+}
+ 
+.form-group input[type="file"]:hover {
+  border-color: #CBD5E1;
+  border-style: dashed;
+}
+ 
+.form-group input[type="file"]:focus {
+  border-color: var(--brand);
+  border-style: solid;
+  box-shadow: 0 0 0 3.5px var(--brand-light);
+  outline: none;
 }
 
 /* ===========================

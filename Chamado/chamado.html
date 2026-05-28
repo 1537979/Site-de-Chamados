@@ -63,6 +63,7 @@
           <option value="Reset">Reset</option>
           <option value="Outro">Outros</option>
         </select>
+        <span class="field-error" id="erro-tipo">Campo obrigatório</span>
 
       </div>
 
@@ -77,6 +78,7 @@
           <option value="Media">Média</option>
           <option value="Alta">Alta</option>
         </select>
+        <span class="field-error" id="erro-prioridade">Campo obrigatório</span>
 
       </div>
 
@@ -95,6 +97,7 @@
           <option value="NLT">NLT</option>
           <option value="Eseye">Eseye</option>
         </select>
+        <span class="field-error" id="erro-operadora">Campo obrigatório</span>
 
       </div>
 
@@ -107,6 +110,7 @@
           type="text"
           id="assunto"
           placeholder="Assunto do chamado">
+        <span class="field-error" id="erro-assunto">Campo obrigatório</span>
 
       </div>
 
@@ -119,6 +123,7 @@
           type="email"
           id="copia"
           placeholder="Digite o email">
+        <span class="field-error" id="erro-copia">Campo obrigatório</span>
 
       </div>
 
@@ -130,18 +135,19 @@
         <textarea
           id="mensagem"
           placeholder="Descreva aqui o seu chamado"></textarea>
+        <span class="field-error" id="erro-mensagem">Campo obrigatório</span>
 
       </div>
 
-      <!-- CHECKBOX -->
-      <div class="checkbox-group">
+      <!-- ANEXO -->
+      <div class="form-group">
 
-        <input type="checkbox" id="notificacao">
+        <label>Anexar Arquivo</label>
 
-        <label for="notificacao">
-          Receber notificações por email
-        </label>
-
+        <input
+          type="file"
+          id="anexo"
+          accept=".pdf,.txt,.png,.jpg,.jpeg">
       </div>
 
       <!-- BOTÃO ENVIAR -->
