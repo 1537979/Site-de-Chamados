@@ -5,9 +5,11 @@ function doPost(e) {
 
   try {
 
-    const sheet = SpreadsheetApp
-      .getActiveSpreadsheet()
-      .getSheetByName("CHAMADOS");
+    const planilha = SpreadsheetApp.openById(
+    "1pzo4Lvt-V0j5r3UWpiiGYa8wk_iX6C_U35faEMLY3HE"
+    );
+
+    const sheet = planilha.getSheetByName("CHAMADOS");
 
     const data = JSON.parse(e.postData.contents);
 
@@ -16,28 +18,70 @@ function doPost(e) {
     const protocolo = "CHAMADO-" +
       String(ultimoID).padStart(4, "0");
 
+    let linkArquivo = "";
+
+    // =========================
+    // SALVA ANEXO
+    // =========================
+
+    if (data.anexoBase64 && data.nomeArquivo) {
+
+      const pasta = DriveApp.getFolderById(
+        "1xgwA_r20vudyadktVcHFYBNOe-LxOFyG"
+      );
+
+      const bytes = Utilities.base64Decode(data.anexoBase64);
+
+      const blob = Utilities.newBlob(
+        bytes,
+        data.tipoArquivo,  // FIX #2: campo agora enviado corretamente pelo chamado.js
+        data.nomeArquivo
+      );
+
+      const arquivo = pasta.createFile(blob);
+
+      linkArquivo = arquivo.getUrl();
+    }
+
+    // =========================
+    // SALVA PLANILHA
+    // FIX #1: usa data.mensagem (campo correto enviado pelo formulário)
+    // FIX #3: campos email e nome removidos pois não existem no formulário
+    // =========================
+
     sheet.appendRow([
       protocolo,
-      data.email,
-      data.nome,
       data.tipo,
       data.prioridade,
       data.operadora,
       data.emailOperadora,
       data.assunto,
-      data.descricao,
+      data.mensagem,   // FIX #1: era data.mensagem mas o JS enviava "descricao" — agora ambos batem
       data.copia,
+      linkArquivo,
       new Date()
     ]);
 
     return ContentService
       .createTextOutput(JSON.stringify({
         status: "ok",
-        protocolo: protocolo
+        protocolo: protocolo,
+        linkArquivo: linkArquivo
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (erro) {
+
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        status: "erro",
+        mensagem: erro.toString()
       }))
       .setMimeType(ContentService.MimeType.JSON);
 
   } finally {
+
     lock.releaseLock();
+
   }
 }
