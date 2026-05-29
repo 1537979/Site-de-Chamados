@@ -43,7 +43,6 @@ function validarFormulario() {
     { id: "prioridade", valor: document.getElementById("prioridade").value },
     { id: "operadora",  valor: document.getElementById("operadora").value },
     { id: "assunto",    valor: document.getElementById("assunto").value.trim() },
-    { id: "copia",      valor: document.getElementById("copia").value.trim() },
     { id: "mensagem",   valor: document.getElementById("mensagem").value.trim() }
   ];
 
@@ -120,7 +119,7 @@ async function enviar() {
     prioridade: document.getElementById("prioridade").value,
     operadora:  document.getElementById("operadora").value,
 
-    emailOperadora: "arthur.alj13@gmail.com",
+    emailOperadora: "arthur.leandro@getrak.com.br",
 
     assunto:
       "GETRAK / NEXCORP SERVIÇOS E TELECOMUNICAÇÕES S/A CNPJ: 06.349.959/0001-13 - " +
